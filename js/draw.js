@@ -1,7 +1,18 @@
 var draw = (function() {
+
+    var getRandomColor = function()
+    {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
     var bodySnake = function(x, y) {
         // Single Square
-        ctx.fillStyle = "white";
+        ctx.fillStyle = getRandomColor();
         ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
         // Border of Square
         ctx.strokeStyle = "black";
@@ -133,6 +144,7 @@ var draw = (function() {
         drawSnake();
         createFood();
         gameloop = setInterval(paint, 80);
+        score = 0;
     }
 
     return {init: init};
